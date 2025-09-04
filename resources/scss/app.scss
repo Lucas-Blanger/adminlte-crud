@@ -1,2 +1,5 @@
-@import "admin-lte";
+@import "variables";
+@import "admin-lte/dist/css/adminlte.css";
+@import "bootstrap/dist/css/bootstrap.css";
+@import "bootstrap-icons";
 @import "overlayscrollbars/styles/overlayscrollbars.css";
