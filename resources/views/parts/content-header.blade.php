@@ -8,7 +8,6 @@
 
 
         
-    
     <div class="class=col-sm-8">
         @isset($breadcrumb)
       <ol class="breadcrumb mb-0">
@@ -19,8 +18,8 @@
       @endisset
     </div>
 
-    <div class="col-sm-auto ms-auto">
-      Actions
+    <div class="col-sm-auto ms-auto text-end">
+      @yield('page-actions')
     </div>
   </div>
 </div>
