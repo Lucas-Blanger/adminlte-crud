@@ -49,6 +49,12 @@ class UserController extends Controller
         $user->fill($input);
         $user->save();
 
-        return back() > with('status', 'Usuário editado com sucesso!');
+        return back()->with('status', 'Usuário editado com sucesso!');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('users.index')->with('status', 'Usuário deletado com sucesso!');
     }
 }

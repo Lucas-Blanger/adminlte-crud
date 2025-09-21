@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('page-title', 'Usuários')
 @section('page-actions')
-    <a href="" class="btn btn-primary">Adicionar</a>
+    <a href="{{ route('users.create') }}" class="btn btn-primary">Adicionar</a>
 @endsection
 
 @section('content')
@@ -23,9 +23,18 @@
             <th scope="row">{{ $user->id }}</th>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
-            <td>
-                <a href="" class="btn btn-primary btn-sm">Editar</a>
-                <a href="" class="btn btn-danger btn-sm">Excluir</a>
+            <td class="d-flex gap-2">
+                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-primary">
+                    Editar
+                </a>
+
+                <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                        Excluir
+                    </button>
+                </form>
             </td>
         </tr>
     @endforeach
