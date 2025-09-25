@@ -9,6 +9,8 @@
     <div class="alert alert-success"> {{ $value }}</div>
   @endsession
 
+
+
   <form action="{{ route('users.index')}}" method="GET" class="mb-3" style="width: 400px">
 
     <div class="input-group input-group-sm">
@@ -34,17 +36,22 @@
               <td>{{ $user->name }}</td>
               <td>{{ $user->email }}</td>
               <td class="d-flex gap-2">
-                  <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-primary">
-                      Editar
-                  </a>
+                 @can('edit', \App\Models\User::class)
+                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-primary">
+                        Editar
+                    </a>
+                  @endcan
 
-                  <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="btn btn-sm btn-outline-danger">
-                          Excluir
-                      </button>
-                  </form>
+                  @can('destroy', \App\Models\User::class)
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                            Excluir
+                        </button>
+                    </form>
+                  @endcan
+                  
               </td>
           </tr>
       @endforeach
